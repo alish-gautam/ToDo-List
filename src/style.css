@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Inconsolata:wght@300&family=Saira+Condensed:wght@100&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.headingdiv{
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.597);
+    color: white;
+    padding: 15px;
+    grid-column: 1/3;
+}
+.titleImg{
+    width: 50px;
+}
+.heading{
+    font-size: 60px;
+    font-family: Dosis;
+}
+.container{
+    width: 60%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.sidebar{
+    background-color: #dddddd;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    gap: 20px;
+    padding-top: 30px;
+    height: minmax(100vh,auto);
+    height: auto;
+    padding-right: 20px;
+}
+.topElements>*{
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.sidebar_divs{
+    display: flex;
+    gap: 10px;
+}
+.sidebarIcons{
+    width: 25px;
+}
+.topElements>*:hover{
+    background-color: rgba(0, 0, 0, 0.214);
+}
+.project_title{
+    font-size: 20px;
+}
+.addIcon{
+    width: 60px;
+}
+.projects>.project_title:hover{
+    background-color: "none";
+}
+.addIcon{
+    cursor: pointer;
+}
+
