@@ -1,0 +1,57 @@
+.content{
+    background-color: rgba(128, 128, 128, 0.13);
+}
+.mytitle{
+    padding: 10px;
+}
+.descript{
+    padding: 10px;
+}
+.userInput{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+    gap: 10px;
+}
+.userInput>*{
+    width: 20vw;
+    border-radius: 8px;
+}
+.buttondiv{
+    margin-left:20px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    /* border: 2px solid red; */
+}
+.buttondiv>*{
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 550;
+}
+.buttondiv>:first-child:hover{
+    background-color: rgba(0, 128, 0, 0.584);
+}
+.buttondiv>:nth-child(2):hover{
+    background-color: rgba(255, 255, 0, 0.646);
+}
+.buttondiv>:last-child:hover{
+    background-color: rgba(255, 0, 0, 0.642);
+}
+.confirmdiv{
+   margin: 20px 20px;
+}
+.confirmdiv>*{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.confirmdiv>:first-child:hover{
+    background-color: rgba(0, 0, 255, 0.598);
+    color: white;
+}

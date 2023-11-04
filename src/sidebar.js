@@ -3,7 +3,8 @@ import Today from '/src/images/Today.png'
 import Week from '/src/images/week.png'
 import Home from '/src/images/home.png'
 import Add from '/src/images/add.png'
-import { myProjects } from './Projects'
+
+import { createProject } from './CreateProject'
 export function sidebar(){
     let container=document.querySelector('.container')
     //Making a sidebar
@@ -98,6 +99,7 @@ export function sidebar(){
     })
 
     add_icon.addEventListener('click',()=>{
-        myProjects()
+        add_icon.style.display="none"
+        createProject()
     })
 }

@@ -35,6 +35,7 @@
     height: minmax(100vh,auto);
     height: auto;
     padding-right: 20px;
+    height:96vh;
 }
 .topElements>*{
     font-size: 25px;
