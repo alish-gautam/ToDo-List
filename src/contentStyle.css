@@ -3,6 +3,7 @@
 }
 .mytitle{
     padding: 10px;
+    
 }
 .descript{
     padding: 10px;
@@ -15,7 +16,9 @@
     gap: 10px;
 }
 .userInput>*{
+    /* width: minmax(40px,20vw); */
     width: 20vw;
+    min-width: 90px;
     border-radius: 8px;
 }
 .buttondiv{
@@ -31,15 +34,22 @@
     border-radius: 8px;
     font-size: 15px;
     font-weight: 550;
+    transition: all 0.3s;
+    background-color: rgba(128, 128, 128, 0.406);
+    border: none;
 }
+
 .buttondiv>:first-child:hover{
     background-color: rgba(0, 128, 0, 0.584);
+    border: none;
 }
 .buttondiv>:nth-child(2):hover{
     background-color: rgba(255, 255, 0, 0.646);
+    border: none;
 }
 .buttondiv>:last-child:hover{
     background-color: rgba(255, 0, 0, 0.642);
+    border: none;
 }
 .confirmdiv{
    margin: 20px 20px;
@@ -50,8 +60,38 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
+    border: none;
+    background-color: rgba(0, 0, 255, 0.275);
 }
 .confirmdiv>:first-child:hover{
     background-color: rgba(0, 0, 255, 0.598);
+    color: white;
+    border: none;
+}
+.titleError>:first-child{
+    color: red;
+    font-size: 30px;
+}
+.titleError{
+    margin-left: 20px;
+}
+.todoTitle{
+    padding: 10px;
+}
+.todo_confirm_div{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.todo_confirm_div>:first-child{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(0, 0, 255, 0.226);
+}
+.todo_confirm_div>:first-child:hover{
+    background-color: rgba(0, 0, 255, 0.442);
     color: white;
 }
