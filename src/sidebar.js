@@ -3,10 +3,11 @@ import Today from '/src/images/Today.png'
 import Week from '/src/images/week.png'
 import Home from '/src/images/home.png'
 import Add from '/src/images/add.png'
-
 import { createProject } from './CreateProject'
 export function sidebar(){
     let container=document.querySelector('.container')
+    let content=document.createElement('div')
+    content.classList.add('content')
     //Making a sidebar
     let sidebar=document.createElement('div')
     sidebar.classList.add('sidebar')
@@ -53,9 +54,6 @@ export function sidebar(){
     alltimediv.appendChild(alltimeIcon)
     alltimediv.appendChild(allTime)
    
-    
-    // sidebar.appendChild()
-   
     home.click()
 
     // Projects here
@@ -99,7 +97,6 @@ export function sidebar(){
     })
 
     add_icon.addEventListener('click',()=>{
-        add_icon.style.display="none"
         createProject()
     })
 }

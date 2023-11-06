@@ -1,4 +1,8 @@
+
 import { myProjects } from './Projects'
+import { sidebar } from './sidebar'
+import Close from '/src/images/close.png'
+import List from '/src/images/list.png'
 export function createProject(){
     //container
     let container=document.querySelector('.container')
@@ -33,29 +37,17 @@ export function createProject(){
     container.appendChild(content)
 
     confirm.addEventListener('click',()=>{
-        onConfirmClick()
+       onProjectComfirmClick()
         }
     )
 }
 
-function onConfirmClick(){
-    let project_title=document.querySelector('.mytitle')
+function onProjectItemClick(){
+   
     let container=document.querySelector(".container")
     let content=document.querySelector('.content')
     let userInput=document.querySelector('.userInput')
     let confirmdiv=document.querySelector('.confirmdiv')
-    if(!project_title.value){
-        let errordiv=document.createElement('div')
-        let error=document.createElement('p')
-        error.innerText="Please choose a title, it cannot be empty"
-        errordiv.classList.add('titleError')
-        errordiv.appendChild(error)
-        content.appendChild(errordiv)
-        container.appendChild(content)
-        return
-    }
-    userInput.innerHTML=""
-    content.innerHTML=""
     
    
     //todo title
@@ -97,4 +89,82 @@ function onConfirmClick(){
     content.appendChild(buttonDiv)
     content.appendChild(todo_confirm_div)
     container.appendChild(content)
+    //when confirm todo is clicked
+    todo_confirm.addEventListener('click',()=>{
+        let title_value=todotitle.value
+        let descript_value=descript.value
+        low.addEventListener('click',()=>{
+            low.value="Low"
+            medium.value=null
+            high.value=null
+        })
+        medium.addEventListener('click',()=>{
+            medium.value="Medium"
+            low.value=null
+            high.value=null
+        })
+        high.addEventListener('click',()=>{
+           high.value="High"
+           low.value=null
+           medium.value=null
+        })
+        
+    })
+    
+}
+
+function onProjectComfirmClick(){
+    let project_title=document.querySelector('.mytitle')
+    let container=document.querySelector('.container')
+    let confirmDiv=document.querySelector('.confirmdiv')
+    let content=document.querySelector('.content')
+    let userInput=document.querySelector('.userInput')
+    if(!project_title.value){
+        let errordiv=document.createElement('div')
+        let error=document.createElement('p')
+        error.innerText="Please choose a title, it cannot be empty"
+        errordiv.classList.add('titleError')
+        errordiv.appendChild(error)
+        content.appendChild(errordiv)
+        container.appendChild(content)
+        return
+    }
+    let errordiv=document.querySelector('.titleError')
+    if(errordiv){
+        content.removeChild(errordiv)
+    }
+    //project title value
+    let project_title_value=project_title.value
+    //getting projects
+    let projects=document.querySelector('.projects')
+    let projectDiv=document.createElement('div')
+    projectDiv.classList.add("projectDiv")
+    let myProject=document.createElement('p')
+    myProject.innerText=project_title_value
+    let listIcon=new Image()
+    listIcon.src=List
+    let crossIcon=new Image()
+    crossIcon.src=Close
+    let IconAndProject=document.createElement('div')
+    IconAndProject.classList.add('iconAndProject')
+    let notclicked=true
+    projectDiv.addEventListener('click',()=>{
+        projectDiv.style.fontWeight="bold"
+        projectDiv.style.backgroundColor="rgba(0, 0, 0, 0.214)"
+        if(notclicked){
+            onProjectItemClick()
+            notclicked=false
+        }
+    })
+    IconAndProject.appendChild(listIcon)
+    IconAndProject.appendChild(myProject)
+    projectDiv.appendChild(IconAndProject)
+    projectDiv.appendChild(crossIcon)
+    projects.appendChild(projectDiv)
+    userInput.innerHTML=""
+    confirmDiv.innerHTML=""
+    crossIcon.addEventListener('click',()=>{
+        container.removeChild(content)
+        projects.removeChild(projectDiv)
+    })
 }

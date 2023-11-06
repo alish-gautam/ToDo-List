@@ -65,5 +65,26 @@
 .addIcon{
     cursor: pointer;
 }
-
+.projectDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.projectDiv>:nth-child(2){
+    width: 15px;
+}
+.iconAndProject>:first-child{
+    width: 15px;
+}
+.iconAndProject{
+    display: flex;
+    gap: 10px;
+}
+.projectDiv:hover{
+    background-color: rgba(128, 128, 128, 0.348);
+}
 
