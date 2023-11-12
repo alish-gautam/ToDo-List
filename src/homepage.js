@@ -1,8 +1,11 @@
 import { sidebar } from './sidebar'
+import { onSidebarElementsClick } from './sidebarElemetsClick'
 import headingIcon from '/src/images/to-do-list.png'
 export function homePage(){
     let container=document.querySelector('.container')
     container.classList.add('container')
+    let content=document.createElement('div')
+    content.classList.add('content')
     let headingdiv=document.createElement('div')
     headingdiv.classList.add('headingdiv')
     // title Heading
@@ -19,5 +22,7 @@ export function homePage(){
     container.appendChild(headingdiv)
     // calling sidebar here
     sidebar()
+    
+    container.appendChild(content)
     
 }

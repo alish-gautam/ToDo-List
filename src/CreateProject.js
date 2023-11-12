@@ -1,13 +1,13 @@
 
-import { myProjects } from './Projects'
-import { sidebar } from './sidebar'
 import Close from '/src/images/close.png'
 import List from '/src/images/list.png'
+import Add from '/src/images/add-button.png'
+import Del from '/src/images/bin.png'
 export function createProject(){
     //container
     let container=document.querySelector('.container')
-    let content=document.createElement('div')
-    content.classList.add('content')
+    let content=document.querySelector('.content')
+    content.innerHTML=''
     //userInput is the parent of project title and description and buttons
     let userInput=document.createElement('div')
     userInput.classList.add('userInput')
@@ -42,13 +42,14 @@ export function createProject(){
     )
 }
 
-function onProjectItemClick(){
+export function createTodo(){
    
     let container=document.querySelector(".container")
     let content=document.querySelector('.content')
-    let userInput=document.querySelector('.userInput')
-    let confirmdiv=document.querySelector('.confirmdiv')
-    
+    content.innerHTML=""
+    let userInput=document.createElement('div')
+    userInput.classList.add('userInput')
+    let projectDiv=document.querySelector('.projectDiv')
    
     //todo title
     let todotitle=document.createElement('input')
@@ -73,6 +74,10 @@ function onProjectItemClick(){
     //high
     let high=document.createElement('button')
     high.innerText="High"
+    
+    let setDate=document.createElement('input')
+    setDate.classList.add('date')
+    setDate.type="date"
     //creating the todo confirm button
     let todo_confirm_div=document.createElement('div')
     let todo_confirm=document.createElement('button')
@@ -84,41 +89,89 @@ function onProjectItemClick(){
     buttonDiv.appendChild(high)
     userInput.appendChild(todotitle)
     userInput.appendChild(descript)
+    userInput.appendChild(setDate)
     todo_confirm_div.appendChild(todo_confirm)
     content.appendChild(userInput)
     content.appendChild(buttonDiv)
     content.appendChild(todo_confirm_div)
     container.appendChild(content)
+    // setting the priority value
+    let value;
+    low.addEventListener('click',()=>{
+         value="Low"
+         low.style.backgroundColor="green"
+    })
+    medium.addEventListener('click',()=>{
+         value="Medium"
+         medium.style.backgroundColor="yellow"
+    })
+    high.addEventListener('click',()=>{
+        value="High"
+        high.style.backgroundColor="red"
+    })
     //when confirm todo is clicked
     todo_confirm.addEventListener('click',()=>{
+        // content.innerHTML=""
+        let myArr=[]
+        buttonDiv.innerHTML=""
+        userInput.innerHTML=''
+        todo_confirm_div.innerHTML=""
         let title_value=todotitle.value
         let descript_value=descript.value
-        low.addEventListener('click',()=>{
-            low.value="Low"
-            medium.value=null
-            high.value=null
-        })
-        medium.addEventListener('click',()=>{
-            medium.value="Medium"
-            low.value=null
-            high.value=null
-        })
-        high.addEventListener('click',()=>{
-           high.value="High"
-           low.value=null
-           medium.value=null
-        })
+
+        //creating my div
+        let myTodoDiv=document.createElement('div')
+        myTodoDiv.classList.add('myTodoDiv')
+        let titleValue=document.createElement('h3')
+        titleValue.innerText=title_value
+        let descriptValue=document.createElement('p')
+        descriptValue.innerText=descript_value
+        let priority=document.createElement('button')
+        priority.innerText=value
+        let delIcon=new Image()
+        delIcon.src=Del
+        let date=document.createElement('p')
+        if(!setDate.value){
+            date.innerText="No Date"
+        }
+        else{
+            date.innerText=setDate.value
+        }
         
+        if(value=="Low"){
+            priority.style.backgroundColor="green"
+        }
+        else if(value=="Medium"){
+            priority.style.backgroundColor="yellow"
+        }
+        else if(value=="High"){
+            priority.style.backgroundColor="red"
+        }
+      
+        myTodoDiv.appendChild(titleValue)
+        myTodoDiv.appendChild(descriptValue)
+        myTodoDiv.appendChild(priority)
+        myTodoDiv.appendChild(date)
+        myTodoDiv.appendChild(delIcon)
+        myArr.push(myTodoDiv)
+
+        console.log(myArr)
+        content.appendChild(myTodoDiv)
+        onProjectItemClick()
+
+        delIcon.addEventListener('click',()=>{
+            content.removeChild(myTodoDiv)
+        })
     })
     
 }
 
-function onProjectComfirmClick(){
+export function onProjectComfirmClick(){
     let project_title=document.querySelector('.mytitle')
     let container=document.querySelector('.container')
+    let userInput=document.querySelector('.userInput')
     let confirmDiv=document.querySelector('.confirmdiv')
     let content=document.querySelector('.content')
-    let userInput=document.querySelector('.userInput')
     if(!project_title.value){
         let errordiv=document.createElement('div')
         let error=document.createElement('p')
@@ -136,7 +189,7 @@ function onProjectComfirmClick(){
     //project title value
     let project_title_value=project_title.value
     //getting projects
-    let projects=document.querySelector('.projects')
+    let project_items=document.querySelector('.project_Items')
     let projectDiv=document.createElement('div')
     projectDiv.classList.add("projectDiv")
     let myProject=document.createElement('p')
@@ -147,24 +200,52 @@ function onProjectComfirmClick(){
     crossIcon.src=Close
     let IconAndProject=document.createElement('div')
     IconAndProject.classList.add('iconAndProject')
-    let notclicked=true
-    projectDiv.addEventListener('click',()=>{
-        projectDiv.style.fontWeight="bold"
-        projectDiv.style.backgroundColor="rgba(0, 0, 0, 0.214)"
-        if(notclicked){
-            onProjectItemClick()
-            notclicked=false
-        }
-    })
     IconAndProject.appendChild(listIcon)
     IconAndProject.appendChild(myProject)
     projectDiv.appendChild(IconAndProject)
     projectDiv.appendChild(crossIcon)
-    projects.appendChild(projectDiv)
+    // console.log(project_items)
+    project_items.appendChild(projectDiv)
     userInput.innerHTML=""
     confirmDiv.innerHTML=""
     crossIcon.addEventListener('click',()=>{
-        container.removeChild(content)
-        projects.removeChild(projectDiv)
+        project_items.removeChild(projectDiv)
+    })
+    runOnProjectItemClick()
+   
+}
+
+function runOnProjectItemClick(){
+    let project_items=document.querySelector('.project_Items')
+    let prevElement=null
+    project_items.childNodes.forEach((element)=>{
+        element.addEventListener('click',()=>{
+            if(prevElement){
+                prevElement.style.fontWeight=""
+            }
+                
+                element.style.fontWeight="bold"
+                let content=document.querySelector('.content')
+                content.innerHTML=""
+                onProjectItemClick()
+                prevElement=element
+        })
+    })
+}
+
+function onProjectItemClick(){
+    let content=document.querySelector('.content')
+    let addTodoDiv=document.createElement('div')
+    let text=document.createElement('p')
+    text.innerText="Add Item"
+    addTodoDiv.classList.add('addTodoDiv')
+    let addTodo=new Image()
+    addTodo.classList.add('addTodo')
+    addTodo.src=Add
+    addTodoDiv.appendChild(addTodo)
+    addTodoDiv.appendChild(text)
+    content.appendChild(addTodoDiv)
+    addTodo.addEventListener('click',()=>{
+        createTodo()
     })
 }
