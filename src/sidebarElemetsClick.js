@@ -8,14 +8,10 @@ export function onSidebarElementsClick(){
     let alltime=document.querySelector('.alltimeDiv')
     let content=document.querySelector('.content')
 
-    // home.addEventListener("click",()=>{
-    //     content.innerHTML=""
-
-       
-    // })
     let topElements=document.querySelector('.topElements')
-    
+ 
     topElements.childNodes.forEach(element => {
+ 
         element.addEventListener('click',()=>{
             content.innerHTML=""
             let addHolder=document.createElement('div')
@@ -34,5 +30,4 @@ export function onSidebarElementsClick(){
             })
         })
     });
-      
 }

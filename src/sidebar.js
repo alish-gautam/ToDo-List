@@ -56,7 +56,6 @@ export function sidebar(){
     alltimediv.appendChild(alltimeIcon)
     alltimediv.appendChild(allTime)
    
-    home.click()
 
     // Projects here
     let projects=document.createElement('div')
@@ -99,9 +98,7 @@ export function sidebar(){
     })
 
     // 
-    window.addEventListener('load',()=>{
-        home.click()
-    })
+    
    
     add_icon.addEventListener('click',()=>{
         createProject()   
@@ -111,6 +108,9 @@ export function sidebar(){
     topNodes.forEach(element => {
         element.addEventListener('click',()=>{
             onSidebarElementsClick()
+        })
+        window.addEventListener('load',()=>{
+            home.click()
         })
     });
     
