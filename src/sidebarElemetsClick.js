@@ -1,5 +1,5 @@
 import Add from '/src/images/add-button.png'
-import { createTodo } from './CreateProject'
+import { createTodo, onProjectItemClick } from './CreateProject'
 export function onSidebarElementsClick(){
     let container=document.querySelector('.container')
     let home=document.querySelector(".homeDiv")
@@ -14,20 +14,7 @@ export function onSidebarElementsClick(){
  
         element.addEventListener('click',()=>{
             content.innerHTML=""
-            let addHolder=document.createElement('div')
-            addHolder.setAttribute('id','addholder')
-            let addIcon=new Image()
-            addIcon.setAttribute("id",'addIcon')
-            addIcon.src=Add
-            let para=document.createElement('p')
-            para.innerText="Add Item"
-            addHolder.appendChild(addIcon)
-            addHolder.appendChild(para)
-            content.appendChild(addHolder)
-
-            addIcon.addEventListener('click',()=>{
-                createTodo()
-            })
-        })
+            onProjectItemClick()
     });
+})
 }

@@ -46,7 +46,7 @@ export function createTodo(){
    
     let container=document.querySelector(".container")
     let content=document.querySelector('.content')
-    content.innerHTML=""
+    // content.innerHTML=""
     let userInput=document.createElement('div')
     userInput.classList.add('userInput')
     let projectDiv=document.querySelector('.projectDiv')
@@ -83,6 +83,9 @@ export function createTodo(){
     let todo_confirm=document.createElement('button')
     todo_confirm_div.classList.add('todo_confirm_div')
     todo_confirm.innerText="Confirm"
+
+    let todoConfirmDiv=document.createElement('div')
+    todoConfirmDiv.classList.add('todoConfirm')
     //appending to button div
     buttonDiv.appendChild(low)
     buttonDiv.appendChild(medium)
@@ -112,7 +115,6 @@ export function createTodo(){
     //when confirm todo is clicked
     todo_confirm.addEventListener('click',()=>{
         // content.innerHTML=""
-        let myArr=[]
         buttonDiv.innerHTML=""
         userInput.innerHTML=''
         todo_confirm_div.innerHTML=""
@@ -153,9 +155,6 @@ export function createTodo(){
         myTodoDiv.appendChild(priority)
         myTodoDiv.appendChild(date)
         myTodoDiv.appendChild(delIcon)
-        myArr.push(myTodoDiv)
-
-        console.log(myArr)
         content.appendChild(myTodoDiv)
         onProjectItemClick()
 
@@ -233,7 +232,7 @@ function runOnProjectItemClick(){
     })
 }
 
-function onProjectItemClick(){
+export function onProjectItemClick(){
     let content=document.querySelector('.content')
     let addTodoDiv=document.createElement('div')
     let text=document.createElement('p')
@@ -246,6 +245,7 @@ function onProjectItemClick(){
     addTodoDiv.appendChild(text)
     content.appendChild(addTodoDiv)
     addTodo.addEventListener('click',()=>{
+        content.removeChild(addTodoDiv)
         createTodo()
     })
 }
