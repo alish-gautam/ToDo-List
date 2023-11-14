@@ -94,9 +94,13 @@ export function createTodo(){
     userInput.appendChild(descript)
     userInput.appendChild(setDate)
     todo_confirm_div.appendChild(todo_confirm)
-    content.appendChild(userInput)
-    content.appendChild(buttonDiv)
-    content.appendChild(todo_confirm_div)
+    // content.appendChild(userInput)
+    // content.appendChild(buttonDiv)
+    // content.appendChild(todo_confirm_div)
+    todoConfirmDiv.appendChild(userInput)
+    todoConfirmDiv.appendChild(buttonDiv)
+    todoConfirmDiv.appendChild(todo_confirm_div)
+    content.appendChild(todoConfirmDiv)
     container.appendChild(content)
     // setting the priority value
     let value;
